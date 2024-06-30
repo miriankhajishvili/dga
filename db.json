@@ -1,25 +1,49 @@
 {
   "jobs": [
     {
-      "id": "cc5d",
-      "companyName": "სდსად",
-      "companyWebPage": "ასდ",
-      "description": "ასდსადსსსსსსსსსსსსსსსსსსსსსსსსსსსს",
-      "positions": []
+      "id": "3c4d",
+      "companyName": "Tech Innovations Ltd",
+      "companyWebPage": "https://www.techinnovations.com",
+      "description": "Pioneering cutting-edge technologies.",
+      "positions": [
+        {
+          "positionName": "Data Scientist",
+          "positionLevel": "Mid-Level",
+          "description": "Applied machine learning algorithms.",
+          "dateFrom": "2024-01-15T00:00:00.000Z",
+          "dateTo": "2024-06-25T00:00:00.000Z"
+        }
+      ]
     },
     {
-      "id": "bb6a",
-      "companyName": "asd",
-      "companyWebPage": "asd",
-      "description": "sadssssssssssssssssssssssss",
-      "positions": []
+      "id": "1a2b",
+      "companyName": "Acme Corporation",
+      "companyWebPage": "https://www.acmecorp.com",
+      "description": "Leading provider of innovative solutions.",
+      "positions": [
+        {
+          "positionName": "Software Engineer",
+          "positionLevel": "Senior",
+          "description": "Developed scalable backend solutions.",
+          "dateFrom": "2023-12-01T00:00:00.000Z",
+          "dateTo": "2024-06-30T00:00:00.000Z"
+        }
+      ]
     },
     {
-      "id": "6bd5",
-      "companyName": "dd",
-      "companyWebPage": "www.mymarket.ge",
-      "description": "addaasdsssssssssssssssssssss",
-      "positions": []
+      "id": "5e6f",
+      "companyName": "Global Logistics Solutions",
+      "companyWebPage": "https://www.glsolutions.com",
+      "description": "Optimizing supply chain operations worldwide.",
+      "positions": [
+        {
+          "positionName": "Supply Chain Manager",
+          "positionLevel": "Senior",
+          "description": "Managed global logistics operations.",
+          "dateFrom": "2023-10-10T00:00:00.000Z",
+          "dateTo": "2024-06-28T00:00:00.000Z"
+        }
+      ]
     }
   ]
 }

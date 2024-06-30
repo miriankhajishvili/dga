@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatError, MatFormFieldModule} from '@angular/material/form-field';
-import {FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card'
 import { singleLanguageValidator } from '../../shared/validators/singleLanguageValidators';
@@ -10,7 +10,7 @@ import { Observable, Subject, takeUntil } from 'rxjs';
 import { JobService } from '../../core/services/job.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgToastModule, NgToastService } from 'ng-angular-popup';
-import {MatDialogModule, MAT_DIALOG_DATA,
+import {MatDialogModule, 
   MatDialog,
   MatDialogActions,
   MatDialogClose,
@@ -21,6 +21,7 @@ import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { IJob } from '../../core/interfaces/job.interface';
+import { companyWebPageValidator } from '../../shared/validators/web-url-validator';
 
 @Component({
   selector: 'app-task-1',
@@ -47,6 +48,7 @@ import { IJob } from '../../core/interfaces/job.interface';
   styleUrl: './task-1.component.scss',
 })
 export class Task1Component implements OnDestroy, OnInit{
+  form!: FormGroup;
   mySub$ = new Subject();
   getAllJob$: Observable<IJob[]> = this.jobService.getJobs()
   position:any
@@ -66,35 +68,21 @@ export class Task1Component implements OnDestroy, OnInit{
   constructor(
     private jobService: JobService,
     private ngToastService: NgToastService,
-    public dialog: MatDialog
-  ){}
+    public dialog: MatDialog,
+    private fb: FormBuilder
+  ){
+    this.form = this.fb.group({
+      companyName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50), singleLanguageValidator()]],
+      companyWebPage: ['https://www.', [Validators.required, companyWebPageValidator()]],
+      description: ['', [Validators.required, Validators.minLength(20), singleLanguageValidator()]],
+      positions: this.fb.array([])
+    });
+  }
   ngOnInit(): void {
-    this.getAllJob()
+
   }
 
-  form: FormGroup = new FormGroup({
-    companyName: new FormControl('', [
-      Validators.required,
-      Validators.minLength(2),
-      Validators.maxLength(50),
-      singleLanguageValidator(),
-     
-    ]),
-    companyWebPage: new FormControl('', [
-      Validators.required,
-      Validators.minLength(2),
-            singleLanguageValidator(),
 
-
-    ]),
-    description: new FormControl('', [
-      Validators.required,
-      Validators.minLength(20),
-      singleLanguageValidator(),
-    ]),
-    positions: new FormArray([]),
-
-  });
 
   getAllJob(){
     this.jobService.getJobs().subscribe()
@@ -111,7 +99,10 @@ export class Task1Component implements OnDestroy, OnInit{
         next: () => {
           this.ngToastService.success('Job added successfully','Success Messege', 5000)
           this.getAllJob$ = this.jobService.getJobs()
+         
           this.form.reset()
+          this.companyWebPage?.setValue("https://www.");
+      
         },
         error: () => {this.ngToastService.danger('Jobn added unsuccessfully','Error Messege', 5000)},
 
@@ -122,16 +113,7 @@ export class Task1Component implements OnDestroy, OnInit{
 
 
 }
-resetForm() {
-  this.form.reset({
-    companyName: '',
-    companyWebPage: '',
-    description: ''
-  });
-  Object.keys(this.form.controls).forEach(key => {
-    this.form.get(key)?.setErrors(null);
-  });
-}
+
 deleteJob(id: number){
   this.jobService.deleteJob(id).subscribe({
     next: () => {
@@ -168,7 +150,14 @@ addPosition(id: number): void {
     }
   });
 }
+onWebPageInput(event: Event): void {
+  const inputElement = event.target as HTMLInputElement;
+  const currentValue = inputElement.value;
 
+  if (!currentValue.startsWith('https://www.')) {
+    inputElement.value = 'https://www.' + currentValue.substring(12); // Ensure "https://www." is always at the start
+  }
+}
 
 ngOnDestroy(): void {
   this.mySub$.next(null), this.mySub$.complete();

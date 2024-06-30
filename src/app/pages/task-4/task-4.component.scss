@@ -2,29 +2,32 @@
   border-top: 1px solid #bbb9b9;
   padding-top: 10px;
 }
+
 .month {
   display: flex;
-  padding: 37px 16px ;
+  padding: 37px 16px;
   align-items: center;
   justify-content: center;
 }
+
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 8px;
-
-  &__day-header {
-    font-weight: bold;
-    text-align: center;
-  }
 }
 
-
+.calender__day-header {
+  font-weight: bold;
+  text-align: center;
+}
 
 .day {
   text-align: center;
   padding: 8px;
   border-radius: 4px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .today {

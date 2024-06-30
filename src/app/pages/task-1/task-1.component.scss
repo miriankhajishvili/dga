@@ -3,6 +3,26 @@
   display: flex;
   gap: 5vw;
   padding: 10px;
+
+  @media (max-width: 689px) {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    font-size: 12px;
+  }
+
+  .company {
+    &__about {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding-bottom: 10px;
+
+      span {
+        opacity: 0.4;
+      }
+    }
+  }
 }
 
 .example-form {
@@ -20,23 +40,33 @@
   flex-wrap: wrap;
   gap: 15px;
   justify-content: flex-start;
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .card {
   min-height: 20vh;
-  background-color: rgb(197, 202, 202);
-  width: 418px;
+  background-color: rgb(241 247 247);
+  padding: 10px;
+  width: 100%; /* Adjust width as needed */
+  max-width: 500px; /* Set a maximum width to maintain design consistency */
   padding: 10px;
 }
 
-@media (min-width: 1200px) {
+@media (max-width: 688px) {
   .card {
-    width: 300px;
+    width: 350px;
+  }
+  @media (max-width: 616px) {
+    .card {
+      width: 300px;
+    }
   }
 }
 
 .submit {
-  margin-top: 25px;
   background-color: #09114c;
   color: #fff;
 }
@@ -62,4 +92,42 @@
 
 .mat-card-subtitle a:hover {
   text-decoration: underline;
+}
+
+.mat-card-content {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-mdc-card-content:last-child {
+  padding-bottom: 0px;
+}
+
+.about-posiiton {
+  span {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2px;
+  }
+}
+
+.about-position {
+  display: flex;
+  flex-direction: column; /* Ensures each span stacks vertically */
+  gap: 5px; /* Adds space between spans */
+  word-wrap: break-word; /* Allows text to wrap within the container */
+  overflow-wrap: break-word; /* Handles overflow by breaking words */
+}
+
+.about-position span {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 2px;
 }

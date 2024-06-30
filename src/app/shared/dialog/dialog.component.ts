@@ -81,21 +81,18 @@ export class DialogComponent implements OnInit{
       Validators.minLength(2),
       Validators.maxLength(50),
       singleLanguageValidator(),
-      Validators.pattern(/^\S+$/),
     ]),
     positionLevel: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(50),
       singleLanguageValidator(),
-      Validators.pattern(/^\S+$/),
     ]),
     description: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(300),
       singleLanguageValidator(),
-      Validators.pattern(/^\S+$/),
     ]),
     dateFrom: new FormControl('',[
       Validators.required
