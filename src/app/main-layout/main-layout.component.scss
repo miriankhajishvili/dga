@@ -1,0 +1,29 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.nav-bar {
+  background-color: #09114c;
+  color: #fff;
+  display: flex;
+  gap: 10px;
+
+
+  .example-button-row {
+    display: table-cell;
+    max-width: 600px;
+
+
+  }
+  .active-link {
+    background-color: #6f728f;
+    color: #fff;
+    transition: 0.5s;
+  }
+  .example-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+    border-radius: 18px;
+
+  }
+
+}
+

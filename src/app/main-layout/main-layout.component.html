@@ -1,0 +1,11 @@
+<mat-toolbar class="nav-bar">
+<section>
+  <div class="example-button-row" >
+    @for(taskName of taskNamesArray; track taskName; let i = $index){
+      <button [routerLink]="['task-'+ (i+1)]" routerLinkActive="active-link" mat-raised-button>{{taskName}}</button>
+    }
+
+  </div>
+</section>
+</mat-toolbar>
+<router-outlet></router-outlet>

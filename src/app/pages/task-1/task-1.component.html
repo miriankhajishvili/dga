@@ -1,0 +1,119 @@
+<div class="container">
+  <div>
+    <form class="example-form" [formGroup]="form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Enter company name</mat-label>
+        <input formControlName="companyName" matInput placeholder="DGA" />
+        <mat-error *ngIf="companyName?.errors?.['minlength']">
+          Minlengh mast be at least 2 charachters.</mat-error
+        >
+        <mat-error *ngIf="companyName?.errors?.['maxlength']">
+          Maxlength mast be max 50 charachters.</mat-error
+        >
+        <mat-error *ngIf="companyName?.errors?.['required'] ">
+          Company name is requared !</mat-error
+        >
+
+        <mat-error *ngIf="companyName?.errors?.['singleLanguage']">
+          Please write in English or In Georgian
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Enter company web page</mat-label>
+        <input
+          formControlName="companyWebPage"
+          matInput
+          placeholder="dga.gov.ge"
+        />
+        <mat-error *ngIf="companyWebPage?.errors?.['required']">
+          Company web page is requared!</mat-error
+        >
+        <mat-error *ngIf="companyWebPage?.errors?.['minlength']">
+          Minlengh mast be at least 2 charachters.</mat-error
+        >
+        <mat-error *ngIf="companyWebPage?.errors?.['singleLanguage']">
+          Please write in English or In Georgian
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Enter Company description </mat-label>
+        <textarea
+          formControlName="description"
+          matInput
+          placeholder="About company .."
+        ></textarea>
+        <mat-error *ngIf="description?.errors?.['minlength']">
+          Minlengh mast be at least 20 charachters.</mat-error
+        >
+
+        <mat-error *ngIf="description?.errors?.['required']">
+          Description is requared.</mat-error
+        >
+
+        <mat-error *ngIf="description?.errors?.['singleLanguage']">
+          Please write in English or In Georgian
+        </mat-error>
+      </mat-form-field>
+      <button (click)="submit()" class="submit" mat-raised-button>
+        Add Job
+      </button>
+    </form>
+  </div>
+
+  <div class="card-container">
+    @for(job of getAllJob$ | async; track job){
+    <ng-container>
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title>{{ job.companyName }}</mat-card-title>
+          <mat-card-subtitle
+            ><a target="_blank" [href]="job.companyWebPage"
+              >Company web</a
+            ></mat-card-subtitle
+          >
+        </mat-card-header>
+        <mat-card-content>
+          {{ job.description }}
+        </mat-card-content>
+
+        <mat-card-actions align="start">
+          <button
+            (click)="addPosition(job.id)"
+            class="submit"
+            mat-raised-button
+          >
+            Add position
+          </button>
+        </mat-card-actions>
+        <mat-card-actions align="start">
+          <button
+            (click)="deleteJob(job.id)"
+            class="delete-button"
+            mat-raised-button
+          >
+            Delete Job
+          </button>
+        </mat-card-actions>
+        <div>
+          @for(position of job.positions;track position; let i=$index){
+          <span
+            >{{ i + 1 }}.{{ position.positionName }},{{
+              position.positionLevel
+            }},{{ position.description }}, ({{ position.dateFrom | date }} -
+            {{ position.dateTo | date }})</span
+          >
+          <a
+            (click)="deletePosition(job.id, i)"
+            class="delete-position"
+            mat-button
+            >Delete Position</a
+          >
+          }
+        </div>
+      </mat-card>
+    </ng-container>
+    }
+  </div>
+</div>

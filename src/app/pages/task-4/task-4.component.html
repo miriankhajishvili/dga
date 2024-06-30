@@ -1,0 +1,34 @@
+<mat-card>
+  <mat-card-header class="month">
+    <mat-card-title>{{ currentDate | date: 'MMMM yyyy' }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="content">
+    <div class="calendar">
+      <div class="calender__day-header" *ngFor="let day of ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']">
+        {{ day }}
+      </div>
+      <div
+        *ngFor="let day of previousMonthDays"
+        class="day previous-month"
+      >
+        {{ day }}
+      </div>
+      <div
+        *ngFor="let day of daysInMonth"
+        [ngClass]="{
+          'day': true,
+          'today': isToday(day),
+          'holiday': isHoliday(day)
+        }"
+      >
+        {{ day }}
+      </div>
+      <div
+        *ngFor="let day of nextMonthDays"
+        class="day next-month"
+      >
+        {{ day }}
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

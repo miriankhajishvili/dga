@@ -1,0 +1,20 @@
+.container {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  &__submit {
+    background-color: #09114c;
+    color: #fff
+  }
+}
+
+.label-percentage {
+  margin: 10px;
+
+  &__text-bold {
+    font-weight: 500;
+  }
+}
+

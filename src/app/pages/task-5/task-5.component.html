@@ -1,0 +1,19 @@
+<div class="container">
+  <mat-form-field  style="width: 300px;">
+    <mat-label>Enter First Value</mat-label>
+    <input matInput placeholder="value1" [(ngModel)]="inputValue1" />
+  </mat-form-field>
+  <mat-form-field  style="width: 300px;">
+    <mat-label>Enter (comma-separated-value)</mat-label>
+    <input style="width: 300px;" matInput placeholder="value2" [(ngModel)]="inputValue2" />
+  </mat-form-field>
+  <button class="container__submit" mat-raised-button (click)="matchValues()">
+    Match
+  </button>
+</div>
+<div class="label-percentage">
+  <span class="label-percentage__text-bold">Match Percentages:</span>
+  <div *ngFor="let match of matchPercentages">
+    <mat-label>{{ match.originalValue }}: {{ match.percentage }}%</mat-label>
+  </div>
+</div>

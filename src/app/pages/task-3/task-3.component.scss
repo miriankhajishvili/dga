@@ -1,0 +1,11 @@
+.container {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  &__text-bold {
+    font-weight: 500;
+  }
+}
+

@@ -1,0 +1,85 @@
+<h1 mat-dialog-title>Add Position</h1>
+<div mat-dialog-content >
+  <form  [formGroup]="form" action="" class="dialog-content">
+    <mat-form-field class="example-full-width">
+      <mat-label>Enter position name</mat-label>
+      <input formControlName="positionName" matInput placeholder="Position Name">
+      <mat-error *ngIf="positionName?.errors?.['minlength']">
+        Minlengh mast be at least 2 charachters.</mat-error
+      >
+      <mat-error *ngIf="positionName?.errors?.['maxlength']">
+        Maxlength mast be max 50 charachters.</mat-error
+      >
+      <mat-error *ngIf="positionName?.touched || positionName.value === ''">
+        Please enter a value, empty space is not allowed.</mat-error
+      >
+      <mat-error *ngIf="positionName?.errors?.['pattern']">
+        Please enter a value, empty space is not allowed.
+      </mat-error>
+      <mat-error *ngIf="positionName?.errors?.['singleLanguage']">
+        Please write in English or In Georgian
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Enter position level</mat-label>
+      <input formControlName="positionLevel" matInput placeholder="Position Description">
+      <mat-error *ngIf="positionLevel?.errors?.['minlength']">
+        Minlengh mast be at least 2 charachters.</mat-error
+      >
+      <mat-error *ngIf="positionLevel?.errors?.['maxlength']">
+        Maxlength mast be max 50 charachters.</mat-error
+      >
+      <mat-error *ngIf="positionLevel?.touched || positionLevel.value === ''">
+        Please enter a value, empty space is not allowed.</mat-error
+      >
+      <mat-error *ngIf="positionLevel?.errors?.['pattern']">
+        Please enter a value, empty space is not allowed.
+      </mat-error>
+      <mat-error *ngIf="positionLevel?.errors?.['singleLanguage']">
+        Please write in English or In Georgian
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Enter position description</mat-label>
+      <textarea formControlName="description" matInput placeholder="Position Requirements"></textarea>
+      <mat-error *ngIf="description?.errors?.['minlength']">
+        Minlengh mast be at least 2 charachters.</mat-error
+      >
+      <mat-error *ngIf="description?.errors?.['maxlength']">
+        Maxlength mast be max 50 charachters.</mat-error
+      >
+      <mat-error *ngIf="description?.touched || description.value === ''">
+        Please enter a value, empty space is not allowed.</mat-error
+      >
+      <mat-error *ngIf="description?.errors?.['pattern']">
+        Please enter a value, empty space is not allowed.
+      </mat-error>
+      <mat-error *ngIf="description?.errors?.['singleLanguage']">
+        Please write in English or In Georgian
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>From Date</mat-label>
+      <input formControlName="dateFrom" matInput [matDatepicker]="fromPicker" placeholder="From Date">
+      <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+      <mat-datepicker #fromPicker></mat-datepicker>
+      <mat-error *ngIf="dateFrom?.touched || dateFrom.value === ''">
+        Please enter a value, empty space is not allowed.</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>To Date</mat-label>
+      <input formControlName="dateTo" matInput [matDatepicker]="toPicker" placeholder="To Date">
+      <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+      <mat-datepicker #toPicker></mat-datepicker>
+      <mat-error *ngIf="dateTo?.touched || dateTo.value === ''">
+        Please enter a value, empty space is not allowed.</mat-error
+      >
+    </mat-form-field>
+  </form>
+
+</div>
+<div mat-dialog-actions>
+  <button class="cancel-button" mat-button (click)="onNoClick()">Cancel</button>
+  <button class="button" mat-button (click)="submit()">Add Position</button>
+</div>

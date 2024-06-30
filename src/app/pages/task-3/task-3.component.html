@@ -1,0 +1,8 @@
+  <div class="container">
+    <mat-form-field >
+      <mat-label>Enter Value</mat-label>
+    <input matInput placeholder="value" [(ngModel)]="inputDate">
+    </mat-form-field>
+    <span> <span class="container__text-bold"> Formatted:</span >{{ inputDate | customDatePipe }}</span>
+  </div>
+

@@ -1,0 +1,42 @@
+.content {
+  border-top: 1px solid #bbb9b9;
+  padding-top: 10px;
+}
+.month {
+  display: flex;
+  padding: 37px 16px ;
+  align-items: center;
+  justify-content: center;
+}
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+
+  &__day-header {
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+
+
+.day {
+  text-align: center;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.today {
+  background-color: #1976d2;
+  color: white;
+}
+
+.holiday {
+  background-color: #d32f2f;
+  color: white;
+}
+
+.previous-month, .next-month {
+  opacity: 0.4;
+}

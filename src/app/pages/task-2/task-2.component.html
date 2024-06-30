@@ -1,0 +1,71 @@
+
+<div class="search-container">
+  <mat-form-field class="search">
+    <mat-label>Enter film name</mat-label>
+  <input matInput placeholder="Search" [(ngModel)]="searchTerm">
+  </mat-form-field>
+  <button  class="submit" mat-raised-button (click)="getFilterFilm(searchTerm)">Search</button>
+</div>
+
+@if(this.dataSource.data .length > 1){
+      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+      class="mat-elevation-z8">
+
+    <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+    No.
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+      Image
+      </th>
+      <td mat-cell *matCellDef="let element">  <img *ngIf="element.image" mat-card-image [src]="element.image"  class="table-image"> </td>
+      </ng-container>
+
+    <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+    Title
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="year">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+    Year
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="titleType">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+    Title Type
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.titleType}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+}
+
+
+
+<div class="container">
+  <div class="card-container">
+    @for(film of films; track film){
+      <ng-container >
+        <mat-card class="card">
+
+          <img *ngIf="film.image.url" mat-card-image [src]="film.image.url" alt="{{ film.title }}" class="film-image">
+          <mat-card-content>
+              <mat-card-title>{{ film.title }}</mat-card-title>
+              <mat-card-subtitle>{{ film.titleType }} ({{ film.year }})</mat-card-subtitle>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
+    }
+  </div>
+</div>
